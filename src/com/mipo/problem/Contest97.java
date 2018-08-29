@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.google.gson.Gson;
+import com.mipo.problem.utils.Utils;
 
 public class Contest97 {
 	
@@ -163,10 +164,28 @@ public class Contest97 {
 	
 	int max = 0;
 	
-	public int superEggDrop(int K, int N) {
+	public int superEggDrop1(int K, int N) {
 		max = 0;
 		binsearch(1,N,K,0);
 		return max;
+	}
+	
+	public int superEggDrop(int K, int N) {
+		int[][] dp = new int[N+1][K+1];
+		for(int i=1;i<=N;i++){
+			Arrays.fill(dp[i], Integer.MAX_VALUE);
+		}
+		for(int i=1;i<=N;i++){
+			dp[i][1] = i;
+		}
+		for(int i=1;i<=N;i++){
+			for(int j=2;j<=K;j++){
+				for(int m=1;m<=i;m++){
+					dp[i][j] =Math.min(dp[i][j],Math.max(dp[m-1][j-1]+1, dp[i-m][j]+1)) ;
+				}
+			}
+		}
+		return dp[N][K];
 	}
 	
 	public void binsearch(int left,int right,int remain,int depth){
@@ -209,8 +228,13 @@ public class Contest97 {
 		/*System.out.println(test.superEggDrop(2, 1));
 		System.out.println(test.superEggDrop(1, 2));
 		System.out.println(test.superEggDrop(2, 6));
-		System.out.println(test.superEggDrop(3, 14));*/
+		System.out.println(test.superEggDrop(3, 14));
 		System.out.println(test.superEggDrop(2, 9));
+		System.out.println(test.superEggDrop(6, 10000));*/
+		Long t1 = System.currentTimeMillis();
+		System.out.println(test.superEggDrop(2, 9));
+		//System.out.println(test.superEggDrop(100, 10000));
+		System.out.println(System.currentTimeMillis()-t1);
 	}
 	static Gson gson = new Gson();
 	

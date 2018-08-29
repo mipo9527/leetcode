@@ -10,4 +10,8 @@ public class Utils {
 		int[][] res =  gson.fromJson(str, typeToken.getType());
 		return res;
 	}
+	
+	public static String toJson(Object obj){
+		return gson.toJson(obj);
+	}
 }
