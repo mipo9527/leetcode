@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import junit.framework.Assert;
 
 public class RedEnvelope {
 	
@@ -18,7 +17,7 @@ public class RedEnvelope {
 	
 	public RedEnvelope(double amount, int peoples, int percent) {
 		super();
-		Assert.assertTrue(100*(1.0/peoples)<=percent);
+		//Assert.assertTrue(100*(1.0/peoples)<=percent);
 		this.amount = amount;
 		this.peoples = peoples;
 		this.percent = percent/100.0;
@@ -79,9 +78,9 @@ public class RedEnvelope {
 			double[] ret = re.allocate();
 			System.out.println(Arrays.toString(ret));
 			//System.out.println(Arrays.stream(ret).sum()+":"+Arrays.stream(ret).min().getAsDouble()+":"+Arrays.stream(ret).max().getAsDouble());
-			Assert.assertTrue(Arrays.stream(ret).min().getAsDouble()>0);
-			Assert.assertTrue(re.amount-Arrays.stream(ret).sum()<0.0001);
-			Assert.assertTrue((Arrays.stream(ret).max().getAsDouble()/100.0)<=re.percent);;
+			//Assert.assertTrue(Arrays.stream(ret).min().getAsDouble()>0);
+			//Assert.assertTrue(re.amount-Arrays.stream(ret).sum()<0.0001);
+			//Assert.assertTrue((Arrays.stream(ret).max().getAsDouble()/100.0)<=re.percent);;
 		}
 	}
 	

@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import javax.management.RuntimeErrorException;
 
-import org.junit.Test;
 
 /**
  * LeetCode Solutions
@@ -55,7 +54,6 @@ public class Problems {
 		return root;
     }
 	
-	@Test
 	public void test1(){
 		ListNode l1 = new ListNode(9);
 		l1.next = new ListNode(8);
@@ -117,7 +115,6 @@ public class Problems {
 		return 0;
     }
 	
-	@Test
 	public void test2(){
 		System.out.println(findMedianSortedArrays(new int[]{5}, new int[]{1,2,3,4,6}));
 		System.out.println(findMedianSortedArrays(new int[]{2}, new int[]{1,3,4,5,6}));
