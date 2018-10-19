@@ -100,6 +100,18 @@ public class Contest101 {
         return sum;
     }
 
+    /**
+     * 解题方法：
+     *  1、暴力法。不存在，排列数太大
+     *  2、动态规划。不适合，找不到合适的算子，找不到合适的状态转移方程，而且模式串有2^n种
+     *  3、
+     * @param S
+     * @return
+     */
+    public int numPermsDISequence(String S) {
+
+    }
+
 
     public static void main(String args[]){
         Contest101 test = new Contest101();
