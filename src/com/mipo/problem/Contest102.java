@@ -1,7 +1,7 @@
 package com.mipo.problem;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Contest102 {
 
@@ -111,22 +111,71 @@ public class Contest102 {
      *
      * Now, given two positive integers L and R (represented as strings), return the number of superpalindromes in the inclusive range [L, R].
      */
-    public int superpalindromesInRange(String L, String R) {
-        Integer left = Integer.valueOf(L);
-        Integer right = Integer.valueOf(R);
-        for(int i=left;i<right;i++){
 
+    public int superpalindromesInRange(String L, String R) {
+        Long left = Long.valueOf(L);
+        Long right = Long.valueOf(R);
+        int cnt=0;
+        for(Long res:superPals){
+            if(res>=left&&res<=right){
+                cnt++;
+            }
         }
-        return 0;
+        return cnt;
+    }
+    static Set<Long> superPals = new TreeSet<>();
+    static List<Long> pals = new ArrayList<>();
+
+    static{
+        getAllSuperPals();
+    }
+
+    public static void getAllSuperPals(){
+        for(int i=1;i<=9;i++){
+            palindromes(1,i,new int[i]);
+        }
+        for(Long pal:pals){
+            if(isPalindromes(pal*pal)){
+                superPals.add(pal*pal);
+            }
+            long spal = (long)Math.sqrt(pal);
+            if(spal*spal==pal&&pals.contains(spal)){
+                superPals.add(pal);
+            }
+        }
+    }
+
+    private static boolean isPalindromes(Long a){
+        char[] s = String.valueOf(a).toCharArray();
+        for(int i=0;i<s.length/2;i++){
+            if(s[i]==s[s.length-i-1])continue;
+            else return false;
+        }
+        return true;
+    }
+
+
+    public static void palindromes(int k,int n,int[] record){
+        if(k>(n+1)/2){
+            Long val = Long.valueOf(String.join("",Arrays.stream(record).mapToObj(x->String.valueOf(x)).collect(Collectors.toList())));
+            pals.add(val);
+            return;
+        }
+        for(int i=(k==1?1:0);i<=9;i++){
+            record[k-1]=i;
+            record[n-k]=i;
+            palindromes(k+1,n,record);
+        }
     }
 
     public static void main(String args[]){
         Contest102 test = new Contest102();
-        System.out.println(test.sumSubarrayMins(new int[]{1,2,4}));
+        //System.out.println(test.sumSubarrayMins(new int[]{1,2,4}));
         /*System.out.println(test.sumSubarrayMins(new int[]{3,1,2,4}));
         System.out.println(test.sumSubarrayMins(new int[]{51,29}));
         System.out.println(test.sumSubarrayMins(new int[]{48,87,27}));
         System.out.println(test.sumSubarrayMins(new int[]{1,2,3}));
         System.out.println(test.sumSubarrayMins(new int[]{97,61,59,45}));*/
+        System.out.println(test.superpalindromesInRange("1","213"));;
     }
 }

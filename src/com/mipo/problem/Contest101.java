@@ -102,14 +102,22 @@ public class Contest101 {
 
     /**
      * 解题方法：
-     *  1、暴力法。不存在，排列数太大
-     *  2、动态规划。不适合，找不到合适的算子，找不到合适的状态转移方程，而且模式串有2^n种
-     *  3、
      * @param S
      * @return
      */
     public int numPermsDISequence(String S) {
-
+        char[] chars = S.toCharArray();
+        int[][] dist = new int[chars.length][chars.length];
+        for(int i=0;i<chars.length;i++){
+            for(int j=i+1;j<chars.length;j++){
+                if(chars[j]=='D'){
+                    dist[i][j]=dist[i][j-1]-1;
+                }else{
+                    dist[i][j]=dist[i][j-1]+1;
+                }
+            }
+        }
+        return 0;
     }
 
 
@@ -128,12 +136,13 @@ public class Contest101 {
         System.out.println(stockSpanner.next(60));
         System.out.println(stockSpanner.next(75));
         System.out.println(stockSpanner.next(85));*/
-        System.out.println(test.atMostNGivenDigitSet(new String[]{"1","3","5","7"},100));
+       /* System.out.println(test.atMostNGivenDigitSet(new String[]{"1","3","5","7"},100));
         System.out.println(test.atMostNGivenDigitSet(new String[]{"1","4","9"},1000000000));
         System.out.println(test.atMostNGivenDigitSet(new String[]{"3","4","5","6"},64));
         System.out.println(test.atMostNGivenDigitSet(new String[]{"3","4","8"},4));
         System.out.println(test.atMostNGivenDigitSet(new String[]{"4","7","9"},412001178));
-        System.out.println(test.atMostNGivenDigitSet(new String[]{"1","2","3","6","7","8"},211));
+        System.out.println(test.atMostNGivenDigitSet(new String[]{"1","2","3","6","7","8"},211));*/
+        System.out.println(test.numPermsDISequence("DID"));
     }
 
 }

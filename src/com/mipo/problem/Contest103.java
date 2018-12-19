@@ -20,7 +20,7 @@ public class Contest103 {
         return min==Integer.MAX_VALUE?-1:min;
     }
 
-    public class Point{
+    static class Point{
         int col;
         int row;
 
